@@ -1,0 +1,34 @@
+<h1>Multi Step Example</h1>
+<router-outlet></router-outlet>
+Personal Details : {{this.formDataServices.personalDetails | json}} <br/>
+Address Details : {{this.formDataServices.addressDetails | json}}
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+
+  <!-- <div class="modal-body">
+    <ng-container *ngIf="panelNum == 1"> <div> Put entire panel code here 1 </div> </ng-container>
+     <ng-container *ngIf="panelNum == 2"> Put entire panel code here 2</ng-container>
+     <ng-container *ngIf="panelNum == 3"> Put entire panel code here 3</ng-container>
+     <ng-container *ngIf="panelNum == 4"> Put entire panel code here 4</ng-container>
+     <ng-container *ngIf="panelNum == 5"> Put entire panel code here 5</ng-container>
+  </div> -->
+
+  <div class="modal-body">
+    <ng-container *ngIf="panelNum == 1"> <app-personal-details></app-personal-details> </ng-container>
+     <ng-container *ngIf="panelNum == 2"> <app-address-details></app-address-details></ng-container>
+  </div>
+
+    <div class="modal-footer">
+      <button type="button" *ngIf="panelNum != 2" class="btn btn-primary float-right" (click)="next()">Next</button>
+      <button type="button" *ngIf="panelNum != 1" class="btn btn-primary float-right" (click)="prev()">Prev</button>
+  </div>
+
+</ng-template>
